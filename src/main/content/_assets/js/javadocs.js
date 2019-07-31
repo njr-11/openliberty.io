@@ -27,7 +27,7 @@ function resizeJavaDocWindow() {
     var bottomSection = $('#footer_container').height();
 
     var middleSectionHeight = $(window).height() - (topSection + bottomSection);
-    $('#javadoc_container').height(middleSectionHeight);
+    //$('#javadoc_container').height(middleSectionHeight);
 }
 
 /* Handles any elements which are not accessible by a screen reader and fixes DAP violations. */
@@ -165,7 +165,7 @@ function addScrollListener() {
     var javadoc_container = $('#javadoc_container').contents();
     var rightFrame = javadoc_container.find(CLASS_FRAME);
     rightFrame.contents().off('scroll').on('scroll', function(event){
-        hideFooter($(this));
+        //hideFooter($(this));
     });
 }
 
@@ -296,6 +296,27 @@ function setDynamicIframeContent() {
         setIFrameContent(CLASS_FRAME, defaultHtmlRootPath + targetPage.class);
     }
     updateTitle(targetPage.package);
+
+    var javadoc_container = $('#javadoc_container').contents();
+    var classFrame = javadoc_container.find("iframe[name='classFrame']");
+    var leftTop = javadoc_container.find(".leftTop");
+    var leftBottom = javadoc_container.find(".leftBottom");
+
+
+    console.log("screen height:", $(window).height());
+
+
+
+    console.log("classFrame: ", classFrame);
+
+    // set height of iframe
+    var new_height = classFrame[0].contentWindow.document.body.scrollHeight;
+    console.log("new height:", new_height);
+
+    $('#javadoc_container').height(new_height);
+    leftTop.height($(window).height() * .5);
+    leftBottom.height($(window).height() * .5);
+    classFrame.css('height', new_height + 'px');
 }
 
 // Update title in browser tab to show current page
