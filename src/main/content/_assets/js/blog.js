@@ -15,7 +15,7 @@ function getTags(callback) {
                 if (tag.posts.indexOf(post_name) > -1) {
                     tags_html = '<p class="blog_tag" onclick="filterPosts(' + "'" + tag_class + "'" + '); updateSearchUrl(' + "'" + tag_class + "'" + ');">' + tag.name + '</p>' + '<span>, </span>';
 
-                    $(".blog_post_content:eq(" + i + ")").addClass(tag_class);
+                    $(".blog_post_content:eq(" + i + ")").addClass(tag_class.toLowerCase());
                     $(".blog_tags_container:eq(" + i + ")").append(tags_html);
                 }
             });
@@ -48,7 +48,7 @@ function filterPosts(tag) {
     // hide posts that dont have tag
     $('.blog_post_content').hide();
     $('#older_posts').hide();
-    $("." + tag).show();
+    $("." + tag.toLowerCase()).show();
     $('#final_post').show();
 }
 
