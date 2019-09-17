@@ -373,10 +373,6 @@ body {
 #logo_image_row {
     padding-bottom: 45px;
     border-bottom: 2px solid #979797;
-
-    & img {
-        height: fit-content;
-    }
 }
 
 #microprofile_logo {
@@ -409,9 +405,10 @@ body {
     padding-top: 84px;
 }
 
-.cloud_images_div {
+#cloud_images_div_1 {
     position: absolute;
-    height: 0px;
+    height: 0;
+    top: 3300px;
 }
 
 #get_involved_row {
@@ -705,61 +702,67 @@ body {
     height: 455px;
 }
 
+#cloud_images_div_2 {
+    position: absolute;
+    height: 1300px;
+    top: 3100px;
+}
+
 #cloud_15 {
     position: relative;
+    top: 1700px;
     right: 450px;
-
 }
 
 #cloud_16 {
     position: relative;
-    top: -400px;
+    top: 1250px;
     right: 230px;
 }
 
 #cloud_17 {
     position: relative;
-    top: -600px;
-    right: 32px;
+    top: 1050px;
+    right: 20px;
     transform: scaleX(-1);
 }
 
 #cloud_18 {
     position: relative;
-    top: -783px;
+    top: 817px;
     right: -549px;
     transform: rotate(-5deg);
 }
 
 #cloud_19 {
     position: relative;
-    top: -1140px;
+    top: 460px;
     right: -1005px;
+}
+
+#cloud_20 {
+    position: relative;
+    top: 90px;
+    right: -375px;
 }
 
 #ufo_1 {
     position: relative;
-    top: -1595px;
+    top: 5px;
     right: -626px;
 }
 
 #ufo_2 {
     position: relative;
-    top: -1580px;
+    top: 20px;
     right: -900px;
     transform: scaleX(-1) rotate(18deg);
 }
 
 #ufo_3 {
     position: relative;
-    top: -1480px;
+    top: 120px;
     right: -730px;
-}
-
-#cloud_20 {
-    position: relative;
-    top: -1520px;
-    right: -375px;
 }
 
 #get_involved_title {
@@ -945,6 +948,10 @@ body {
         top: 515px;
     }
 
+    #cloud_images_div_1 {
+        top: 4370px;
+    }
+
     #cloud_10 {
         right: -600px;
     }
@@ -977,6 +984,10 @@ body {
     .logos_row p {
         margin-left: 15px;
         margin-right: 15px;
+    }
+
+    #cloud_images_div_2 {
+        top: 4620px;
     }
 }
 
@@ -1139,6 +1150,10 @@ body {
         margin-bottom: 32px;
     }
 
+    #cloud_images_div_1 {
+        top: 4060px;
+    }
+
     #cloud_9 {
         right: 440px;
     }
@@ -1155,6 +1170,9 @@ body {
         width: 392px;
     }
 
+    #cloud_images_div_2 {
+        display: none;
+    }
 }
 
 
