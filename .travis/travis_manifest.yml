@@ -1,10 +1,9 @@
----
-defaults: &defaults
-  memory: 512M
-  instances: 1
-  disk_quota: 1024M
-  path: ../target/openliberty.war
-  buildpacks: 
-    - liberty-for-java
-  env:
-    JBP_CONFIG_LIBERTY: 'app_archive: {features: ["microProfile-1.0","webCache-1.0"]}'
+memory: 512M
+instances: 1
+disk_quota: 1024M
+path: ../target/openliberty.war
+buildpacks: 
+  - liberty-for-java
+  
+env:
+  JBP_CONFIG_LIBERTY: 'app_archive: {features: ["microProfile-1.0","webCache-1.0"]}'
