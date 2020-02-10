@@ -55,32 +55,27 @@ deploy:
     on:
       branch: master
       condition: $ROUTE = $SITE_QA_DOMAIN
-    <<: *defaults
     script: ./.travis/cf-push.sh
   - provider: script
     skip_cleanup: true
     on:
       branch: master
       condition: $ROUTE = $SITE_DRAFT_DOMAIN
-    <<: *defaults
     script: ./.travis/cf-push.sh
   - provider: script
     skip_cleanup: true
     on:
       branch: development
       condition: $ROUTE = $SITE_DEV_DOMAIN
-    <<: *defaults
     script: env ROUTE=$SITE_DEV_DOMAIN ./.travis/cf-push.sh
   - provider: script
     skip_cleanup: true
     on:
       branch: demo1
-    <<: *defaults
     script: ./.travis/cf-push.sh
   - provider: script
     skip_cleanup: true
     on:
       branch: hotspots
-    <<: *defaults
     script: env ROUTE=$SITE_HOTSPOT_DOMAIN ./.travis/cf-push.sh
 
