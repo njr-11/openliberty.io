@@ -8,3 +8,6 @@ defaults: &defaults
     - liberty-for-java
   env:
     JBP_CONFIG_LIBERTY: 'app_archive: {features: ["microProfile-1.0","webCache-1.0"]}'
+
+applications:
+  <<: *defaults
