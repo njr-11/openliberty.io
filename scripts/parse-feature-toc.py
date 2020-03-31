@@ -15,6 +15,7 @@ def getTOCVersion(tocString):
        return None
 
 def createHrefNewTag(parent, tocHref, tocString, matchingTOCString):
+    # print(tocHref)
     hrefTag = parent.new_tag('div', href=tocHref)
     hrefTag['role'] = 'button'
     hrefTag['class'] = 'feature_version'
@@ -29,22 +30,29 @@ def createHrefNewTag(parent, tocHref, tocString, matchingTOCString):
     return hrefTag
 
 # Get all of the Antora versions
-featurePath = 'target/jekyll-webapp/docs/ref/feature/'
+# featurePath = 'target/jekyll-webapp/docs/ref/feature/'
+featurePath = 'target/jekyll-webapp/docs/'
+
 versions = []
 for version in os.listdir(featurePath):
-    if(os.path.isdir('target/jekyll-webapp/docs/ref/feature/' + version)):
+    if(os.path.isdir(featurePath + version)):
         for file in os.listdir(featurePath + version):
-            if(file == 'featureOverview.html'):
-                versions.append(version)
+            if file == "feature":
+                if version != "modules":
+                    versions.append(version)
+
+# print(versions)
 
 # Loop through each Antora version to fix its feature TOC and combine the pages
 for version in versions:
-    featureIndex = BeautifulSoup(open('./target/jekyll-webapp/docs/ref/feature/' + version + '/featureOverview.html'), "html.parser")
+    featureIndex = BeautifulSoup(open(featurePath + version + '/feature/featureOverview.html'), "html.parser")
 
     # Keep track of new href with updated versions to update the TOCs later
     commonTOCs = {};
     # gather TOCs with version in the title
-    for featureTOC in featureIndex.find_all('a', {'class': 'nav-link'}, href=True):
+    featureDropdown = featureIndex.find('span', text='SERVER FEATURES')
+    print(type(featureDropdown))
+    for featureTOC in featureDropdown.find_all('a', {'class': 'nav-link'}, href=True):
         toc = featureTOC.get('href')
         pattern = re.compile('^(?P<preString>[\s\D]*)-(?P<version>\d+[.]?\d*)(?P<postString>[\s\D]*)')
         matches = pattern.match(toc)
@@ -63,7 +71,7 @@ for version in versions:
     commonTOCKeys = list(commonTOCKeys)
 
     # Add to version href if we need it for linking
-    antora_path = "target/jekyll-webapp/docs/ref/feature/" + version + "/"
+    antora_path = featurePath + version + "/feature/"
 
     for commonTOC in commonTOCKeys:
         commonTOCMatchString = commonTOCs[commonTOC]
@@ -100,7 +108,9 @@ for version in versions:
                     featureTitle.append(hrefTag)
                     matchingTOC.parent.decompose()
             # write to the common version doc to a file
-            with open('./target/jekyll-webapp/docs/ref/feature/' + version + '/' + newTOCHref, "w") as file:            
+            # Steven instead of writing a newTOCHref, we want to WRITE to the existing pages
+            with open(featurePath + version + '/feature/' + newTOCHref, "w") as file:   
+                print(file)         
                 file.write(str(featureIndex))
 
     # record the toc in the featureIndex

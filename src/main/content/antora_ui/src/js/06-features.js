@@ -124,7 +124,7 @@ function addVersionClick(hrefToClick) {
 
         loadVersionContent(resource, currentHref);
         updateHashInUrl(currentHref);
-    }
+    };
 
     $("#common_feature_title > .feature_version").off("click").on("click", onclick);
 
